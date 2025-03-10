@@ -13,7 +13,7 @@ st.sidebar.markdown("""
 """)
 
 # Load data
-data_path = "C:\\Users\\ADVAN\\OneDrive\\Documents\\Dicoding\\Proyek akhir\\submission\\data\\day.csv"
+data_path = ".\\data\\day.csv"
 day_df = pd.read_csv(data_path)
 
 # Cleaning data
