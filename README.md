@@ -4,7 +4,7 @@ Proyek ini bertujuan untuk menganalisis data penyewaan sepeda dan membuat dasbor
 
 ## Struktur Direktori
 ```
-submission/
+bike-rental-analisis/
 ├── dashboard/
 │   └── dashboard.py
 ├── data/
