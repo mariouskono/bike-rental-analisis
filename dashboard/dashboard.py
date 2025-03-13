@@ -5,10 +5,10 @@ import seaborn as sns
 import os
 
 # Judul Utama Dashboard
-st.title("Bike Rental Dataset")
+st.title("Bike Sharing Dataset")
 
 # Informasi Proyek di Sidebar
-st.sidebar.header("Proyek Analisis Data : Bike Rental Dataset")
+st.sidebar.header("Proyek Analisis Data : Bike Sharing Dataset")
 st.sidebar.markdown("""
 - **Nama:** Bertnardo Mario Uskono
 - **Email:** bertnardouskono@gmail.com
