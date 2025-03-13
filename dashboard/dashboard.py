@@ -88,14 +88,14 @@ st.subheader("Kesimpulan Umum")
 # Pertanyaan 1: Hari dengan Peminjaman Tertinggi
 st.write("### 1. Hari dengan Peminjaman Tertinggi")
 st.write("- Hari **Jumat** memiliki jumlah peminjam sepeda tertinggi dalam seminggu.")
-st.write("- Total peminjaman pada hari Jumat mencapai **X** peminjam, lebih tinggi dibandingkan rata-rata harian sebesar **Y** peminjam.")
+st.write("- Bisa dilihat pola pattern pada bar chart total peminjam menunjukan kenaikan jumlah konsumen saat menjelang akhir pekan.")
 st.write("- Peningkatan ini kemungkinan disebabkan oleh meningkatnya aktivitas masyarakat menjelang akhir pekan, seperti persiapan liburan atau pulang kerja lebih awal.")
 
 # Pertanyaan 2: Pengaruh Kondisi Cuaca terhadap Peminjaman
 st.write("### 2. Pengaruh Kondisi Cuaca terhadap Peminjaman")
-st.write("- Kondisi cuaca **cerah** memiliki jumlah peminjam sepeda tertinggi, dengan total **X** peminjam.")
-st.write("- Sebaliknya, kondisi **hujan lebat** menunjukkan jumlah peminjam terendah, hanya **Y** peminjam.")
-st.write("- Hal ini menunjukkan bahwa cuaca buruk mengurangi minat masyarakat untuk bersepeda.")
+st.write("- Kondisi cuaca **cerah** memiliki jumlah peminjam sepeda tertinggi")
+st.write("- Sebaliknya, kondisi **hujan ringan** menunjukkan jumlah peminjam terendah.")
+st.write("- Hal ini menunjukkan bahwa cuaca yang tidak mendukung mengurangi minat masyarakat untuk bersepeda.")
 
 # Rekomendasi
 st.write("### Rekomendasi")
