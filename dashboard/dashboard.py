@@ -8,7 +8,7 @@ import os
 st.title("Bike Rental Dataset")
 
 # Informasi Proyek di Sidebar
-st.sidebar.header("Proyek Analisis Data")
+st.sidebar.header("Proyek Analisis Data : Bike Rental Dataset")
 st.sidebar.markdown("""
 - **Nama:** Bertnardo Mario Uskono
 - **Email:** bertnardouskono@gmail.com
