@@ -4,7 +4,10 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import os
 
-# Informasi Proyek
+# Judul Utama Dashboard
+st.title("Bike Rental Dataset")
+
+# Informasi Proyek di Sidebar
 st.sidebar.header("Proyek Analisis Data")
 st.sidebar.markdown("""
 - **Nama:** Bertnardo Mario Uskono
@@ -49,7 +52,7 @@ day_df["kondisi_cuaca"] = day_df["kondisi_cuaca"].replace({
 })
 
 # Judul Dashboard
-st.title("Dashboard Analisis Data Bike Sharing")
+st.header("Dashboard Analisis Data Bike Sharing")
 
 # Pertanyaan 1: Total Peminjam Sepeda Berdasarkan Hari Kerja
 st.subheader("Total Peminjam Sepeda Berdasarkan Hari Kerja")
