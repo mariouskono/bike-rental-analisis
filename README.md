@@ -2,7 +2,8 @@
 
 Proyek ini bertujuan untuk menganalisis data penyewaan sepeda dan membuat dasbor interaktif untuk memvisualisasikan tren dan pola dalam data.
 
-## Struktur Direktor
+## Struktur Direktori
+```
 submission/
 ├── dashboard/
 │   └── dashboard.py
@@ -13,3 +14,5 @@ submission/
 ├── README.md
 ├── requirements.txt
 └── url.txt
+```
+
