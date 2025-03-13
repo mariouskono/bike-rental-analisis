@@ -82,6 +82,23 @@ st.write("""
 """)
 
 # Kesimpulan Umum
+# Kesimpulan Umum
 st.subheader("Kesimpulan Umum")
-st.write("- Hari Jumat memiliki jumlah peminjam sepeda tertinggi dalam seminggu.")
-st.write("- Kondisi cuaca cerah sangat mendukung aktivitas peminjaman sepeda, dengan jumlah peminjam tertinggi dibandingkan kondisi cuaca lainnya.")
+
+# Pertanyaan 1: Hari dengan Peminjaman Tertinggi
+st.write("### 1. Hari dengan Peminjaman Tertinggi")
+st.write("- Hari **Jumat** memiliki jumlah peminjam sepeda tertinggi dalam seminggu.")
+st.write("- Total peminjaman pada hari Jumat mencapai **X** peminjam, lebih tinggi dibandingkan rata-rata harian sebesar **Y** peminjam.")
+st.write("- Peningkatan ini kemungkinan disebabkan oleh meningkatnya aktivitas masyarakat menjelang akhir pekan, seperti persiapan liburan atau pulang kerja lebih awal.")
+
+# Pertanyaan 2: Pengaruh Kondisi Cuaca terhadap Peminjaman
+st.write("### 2. Pengaruh Kondisi Cuaca terhadap Peminjaman")
+st.write("- Kondisi cuaca **cerah** memiliki jumlah peminjam sepeda tertinggi, dengan total **X** peminjam.")
+st.write("- Sebaliknya, kondisi **hujan lebat** menunjukkan jumlah peminjam terendah, hanya **Y** peminjam.")
+st.write("- Hal ini menunjukkan bahwa cuaca buruk mengurangi minat masyarakat untuk bersepeda.")
+
+# Rekomendasi
+st.write("### Rekomendasi")
+st.write("- Menyesuaikan jumlah sepeda yang tersedia pada hari dengan permintaan tertinggi, terutama pada hari Jumat.")
+st.write("- Menyediakan promo atau diskon khusus pada hari-hari dengan peminjaman rendah untuk meningkatkan penggunaan sepeda.")
+st.write("- Pada musim hujan, penyedia layanan dapat menyediakan fasilitas tambahan seperti tempat berteduh atau perlengkapan hujan untuk meningkatkan kenyamanan pengguna.")
