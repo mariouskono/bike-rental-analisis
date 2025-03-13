@@ -10,9 +10,8 @@ submission/
 ├── data/
 │   ├── day.csv
 │   └── hour.csv
-├── notebook.ipynb
+├── MC190D5Y1643_Bertnardo_Mario_Uskono_Proyek_Analisis_Data.ipynb
 ├── README.md
 ├── requirements.txt
 └── url.txt
 ```
-
