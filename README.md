@@ -1,17 +1,27 @@
-# Proyek Analisis Data Penyewaan Sepeda
+```markdown
+# Proyek Analisis Data Penyewaan Sepeda 🚴
 
-Proyek ini bertujuan untuk menganalisis data penyewaan sepeda dan membuat dasbor interaktif untuk memvisualisasikan tren dan pola dalam data.
+Proyek ini bertujuan untuk menganalisis data penyewaan sepeda dan membuat dasbor interaktif menggunakan Streamlit.  
+**Library yang digunakan**: Pandas, NumPy, Streamlit, Matplotlib, dan Seaborn.
 
-## Struktur Direktori
+---
+
+## Instalasi dan Menjalankan Dashboard
+
+### 1. Setup Environment
+Buat virtual environment dan instal dependensi:
+```bash
+python -m venv venv
+source venv/bin/activate  # Linux/MacOS
+venv\Scripts\activate     # Windows
+
+pip install -r requirements.txt
 ```
-bike-rental-analisis/
-├── dashboard/
-│   └── dashboard.py
-├── data/
-│   ├── day.csv
-│   └── hour.csv
-├── MC190D5Y1643_Bertnardo_Mario_Uskono_Proyek_Analisis_Data.ipynb
-├── README.md
-├── requirements.txt
-└── url.txt
+
+### 2. Menjalankan Dashboard
+```bash
+streamlit run dashboard/dashboard.py
 ```
+Buka browser dan akses URL yang muncul di terminal (biasanya `http://localhost:8501`).
+
+---
