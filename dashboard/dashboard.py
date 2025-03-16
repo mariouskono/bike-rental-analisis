@@ -51,22 +51,37 @@ day_df["kondisi_cuaca"] = day_df["kondisi_cuaca"].replace({
     4: 'Hujan Lebat'
 })
 
+# Fitur Interaktif: Filter Data
+st.sidebar.subheader("Filter Data")
+selected_date = st.sidebar.date_input("Pilih Tanggal", value=day_df["tanggal"].min(), min_value=day_df["tanggal"].min(), max_value=day_df["tanggal"].max())
+selected_season = st.sidebar.selectbox("Pilih Musim", options=["Semua"] + day_df["bulan"].unique().tolist())
+selected_weather = st.sidebar.selectbox("Pilih Kondisi Cuaca", options=["Semua"] + day_df["kondisi_cuaca"].unique().tolist())
+
+# Filter dataset berdasarkan input pengguna
+filtered_df = day_df.copy()
+if selected_date:
+    filtered_df = filtered_df[filtered_df["tanggal"] == pd.to_datetime(selected_date)]
+if selected_season != "Semua":
+    filtered_df = filtered_df[filtered_df["bulan"] == selected_season]
+if selected_weather != "Semua":
+    filtered_df = filtered_df[filtered_df["kondisi_cuaca"] == selected_weather]
+
 # Judul Dashboard
 st.header("Dashboard Analisis Data Bike Sharing")
 
 # Pertanyaan 1: Total Peminjam Sepeda Berdasarkan Hari Kerja
 st.subheader("Total Peminjam Sepeda Berdasarkan Hari Kerja")
 fig_hari_kerja, ax_hari_kerja = plt.subplots(figsize=(10, 5))
-sns.barplot(x="hari_kerja", y="total_peminjam", data=day_df, estimator=sum, ax=ax_hari_kerja)
+sns.barplot(x="hari_kerja", y="total_peminjam", data=filtered_df, estimator=sum, ax=ax_hari_kerja)
 st.pyplot(fig_hari_kerja)
 
 # Pertanyaan 2: Total Peminjam Sepeda Berdasarkan Kondisi Cuaca
 st.subheader("Total Peminjam Sepeda Berdasarkan Kondisi Cuaca")
 fig_kondisi_cuaca, ax_kondisi_cuaca = plt.subplots(figsize=(10, 5))
-sns.barplot(x="kondisi_cuaca", y="total_peminjam", data=day_df, estimator=sum, ax=ax_kondisi_cuaca)
+sns.barplot(x="kondisi_cuaca", y="total_peminjam", data=filtered_df, estimator=sum, ax=ax_kondisi_cuaca)
 st.pyplot(fig_kondisi_cuaca)
 
-# Analisis Lanjutan (Opsional): Correlation Matrix
+# Analisis Lanjutan: Correlation Matrix
 st.subheader("Correlation Matrix")
 correlation_matrix = day_df.corr(numeric_only=True)
 fig_corr, ax_corr = plt.subplots(figsize=(10, 8))
@@ -81,7 +96,6 @@ st.write("""
 - Kelembaban (kelembaban) memiliki korelasi negatif dengan jumlah peminjam, menunjukkan bahwa kelembaban yang lebih tinggi cenderung mengurangi jumlah peminjam.
 """)
 
-# Kesimpulan Umum
 # Kesimpulan Umum
 st.subheader("Kesimpulan Umum")
 
