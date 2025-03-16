@@ -8,8 +8,11 @@ import warnings
 # Suppress warnings
 warnings.filterwarnings('ignore')
 
-# Informasi Proyek
-st.sidebar.header("Proyek Analisis Data")
+# Judul Utama Dashboard
+st.title("Bike Sharing Dataset")
+
+# Informasi Proyek di Sidebar
+st.sidebar.header("Proyek Analisis Data : Bike Sharing Dataset")
 st.sidebar.markdown("""
 - **Nama:** Bertnardo Mario Uskono
 - **Email:** bertnardouskono@gmail.com
