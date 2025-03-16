@@ -53,7 +53,7 @@ day_df["kondisi_cuaca"] = day_df["kondisi_cuaca"].replace({
 
 # Fitur Interaktif: Filter Data
 st.sidebar.subheader("Filter Data")
-selected_date = st.sidebar.date_input("Pilih Tanggal", value=day_df["tanggal"].min(), min_value=day_df["tanggal"].min(), max_value=day_df["tanggal"].max())
+selected_date = st.sidebar.date_input("Pilih Tanggal", value=day_df["tanggal"].min().date(), min_value=day_df["tanggal"].min().date(), max_value=day_df["tanggal"].max().date())
 selected_season = st.sidebar.selectbox("Pilih Musim", options=["Semua"] + day_df["bulan"].unique().tolist())
 selected_weather = st.sidebar.selectbox("Pilih Kondisi Cuaca", options=["Semua"] + day_df["kondisi_cuaca"].unique().tolist())
 
