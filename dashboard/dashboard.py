@@ -56,19 +56,23 @@ day_df["kondisi_cuaca"] = day_df["kondisi_cuaca"].replace({
 
 # Fitur Interaktif: Filter Data
 st.sidebar.subheader("Filter Data")
-selected_date = st.sidebar.date_input("Pilih Tanggal", 
-    value=day_df["tanggal"].min().date(), 
-    min_value=day_df["tanggal"].min().date(), 
-    max_value=day_df["tanggal"].max().date())
-selected_season = st.sidebar.selectbox("Pilih Musim", options=["Semua"] + day_df["bulan"].unique().tolist())
-selected_weather = st.sidebar.selectbox("Pilih Kondisi Cuaca", options=["Semua"] + day_df["kondisi_cuaca"].unique().tolist())
+if not day_df.empty:
+    min_date = day_df["tanggal"].min()
+    max_date = day_df["tanggal"].max()
+    selected_date = st.sidebar.date_input("Pilih Tanggal", value=min_date, min_value=min_date, max_value=max_date)
+    selected_season = st.sidebar.selectbox("Pilih Musim", options=["Semua"] + day_df["bulan"].astype(str).unique().tolist())
+    selected_weather = st.sidebar.selectbox("Pilih Kondisi Cuaca", options=["Semua"] + day_df["kondisi_cuaca"].unique().tolist())
+else:
+    selected_date = None
+    selected_season = "Semua"
+    selected_weather = "Semua"
 
 # Filter dataset berdasarkan input pengguna
 filtered_df = day_df.copy()
 if selected_date:
     filtered_df = filtered_df[filtered_df["tanggal"] == pd.to_datetime(selected_date)]
 if selected_season != "Semua":
-    filtered_df = filtered_df[filtered_df["bulan"] == selected_season]
+    filtered_df = filtered_df[filtered_df["bulan"].astype(str) == selected_season]
 if selected_weather != "Semua":
     filtered_df = filtered_df[filtered_df["kondisi_cuaca"] == selected_weather]
 
