@@ -58,6 +58,11 @@ try:
     day_df['musim'] = day_df['musim'].replace({
         1: 'Winter', 2: 'Spring', 3: 'Summer', 4: 'Fall'
     })
+    
+    # Pastikan kolom numerik bertipe float
+    numeric_cols = ['suhu', 'suhu_terasa', 'kelembaban', 'kecepatan_angin', 'total_peminjam']
+    day_df[numeric_cols] = day_df[numeric_cols].apply(pd.to_numeric, errors='coerce')
+    day_df = day_df.dropna(subset=numeric_cols)
 except KeyError as e:
     st.error(f"Kolom tidak ditemukan: {str(e)}")
     st.stop()
@@ -130,7 +135,7 @@ if not filtered_df.empty:
     st.subheader("Analisis Cluster Peminjaman")
     
     try:
-        # Binning parameter
+        # Binning parameter numerik
         bins_config = {
             'suhu': ['Rendah', 'Sedang', 'Tinggi'],
             'kelembaban': ['Kering', 'Normal', 'Lembab'],
@@ -173,20 +178,37 @@ if not filtered_df.empty:
         
         # Analisis cluster
         st.subheader("Karakteristik Cluster")
+        # Statistik numerik
         cluster_stats = filtered_df.groupby('cluster').agg({
             'suhu': 'mean',
             'kelembaban': 'mean',
             'kecepatan_angin': 'mean',
-            'total_peminjam': 'mean',
-            'musim': lambda x: x.mode()[0],
-            'hari_kerja': lambda x: x.mode()[0]
+            'total_peminjam': 'mean'
         }).rename(columns={
             'suhu': 'Suhu Rata-rata',
             'kelembaban': 'Kelembaban Rata-rata',
             'kecepatan_angin': 'Kecepatan Angin Rata-rata',
             'total_peminjam': 'Rata-rata Peminjaman'
         })
-        st.dataframe(cluster_stats.style.format("{:.2f}"))
+        st.dataframe(
+            cluster_stats.style.format({
+                'Suhu Rata-rata': '{:.2f}',
+                'Kelembaban Rata-rata': '{:.2f}',
+                'Kecepatan Angin Rata-rata': '{:.2f}',
+                'Rata-rata Peminjaman': '{:.2f}'
+            })
+        )
+        
+        # Statistik kategori
+        cluster_categories = filtered_df.groupby('cluster').agg({
+            'musim': lambda x: x.mode()[0],
+            'hari_kerja': lambda x: x.mode()[0]
+        }).rename(columns={
+            'musim': 'Musim Terbanyak',
+            'hari_kerja': 'Hari Terbanyak'
+        })
+        st.write("Kategori Dominan per Cluster:")
+        st.dataframe(cluster_categories)
         
     except Exception as e:
         st.error(f"Error dalam analisis cluster: {str(e)}")
