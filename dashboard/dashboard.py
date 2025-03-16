@@ -20,7 +20,7 @@ data_path = "./data/day.csv"
 day_df = pd.read_csv(data_path)
 
 # Cleaning data
-day_df["tanggal"] = pd.to_datetime(day_df["dteday"])
+day_df["tanggal"] = pd.to_datetime(day_df["dteday"], errors='coerce')
 day_df.rename(columns={
     'dteday': 'tanggal',
     'yr': 'tahun',
@@ -33,6 +33,9 @@ day_df.rename(columns={
     'windspeed': 'kecepatan_angin',
     'cnt': 'total_peminjam'
 }, inplace=True)
+
+# Pastikan tidak ada NaT dalam kolom tanggal
+day_df = day_df.dropna(subset=["tanggal"])
 
 day_df["hari_kerja"] = day_df["hari_kerja"].replace({
     0: 'Minggu',
@@ -53,7 +56,10 @@ day_df["kondisi_cuaca"] = day_df["kondisi_cuaca"].replace({
 
 # Fitur Interaktif: Filter Data
 st.sidebar.subheader("Filter Data")
-selected_date = st.sidebar.date_input("Pilih Tanggal", value=day_df["tanggal"].min().date(), min_value=day_df["tanggal"].min().date(), max_value=day_df["tanggal"].max().date())
+selected_date = st.sidebar.date_input("Pilih Tanggal", 
+    value=day_df["tanggal"].min().date(), 
+    min_value=day_df["tanggal"].min().date(), 
+    max_value=day_df["tanggal"].max().date())
 selected_season = st.sidebar.selectbox("Pilih Musim", options=["Semua"] + day_df["bulan"].unique().tolist())
 selected_weather = st.sidebar.selectbox("Pilih Kondisi Cuaca", options=["Semua"] + day_df["kondisi_cuaca"].unique().tolist())
 
