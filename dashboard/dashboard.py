@@ -19,6 +19,10 @@ st.sidebar.markdown("""
 - **ID Dicoding:** MC190D5Y1643
 """)
 
+# Tombol untuk Analisis Notebook di Sidebar
+st.sidebar.header("Opsi Analisis Tambahan")
+show_notebook = st.sidebar.checkbox("Tampilkan Analisis Notebook")
+
 # Load data
 data_path = "./data/day.csv"
 try:
@@ -217,6 +221,45 @@ if not filtered_df.empty:
         st.error(f"Error dalam analisis cluster: {str(e)}")
 else:
     st.warning("Tidak ada data yang sesuai dengan filter yang dipilih.")
+
+# Tampilkan Analisis Notebook jika dipilih
+if show_notebook:
+    st.title("Analisis Tambahan dari Notebook")
+    
+    # Pertanyaan 1: Total Peminjam Berdasarkan Hari Kerja
+    st.subheader("Total Peminjam Sepeda Berdasarkan Hari Kerja")
+    fig4, ax4 = plt.subplots(figsize=(10,5))
+    sns.barplot(x="hari_kerja", y="total_peminjam", data=day_df, estimator=sum, ax=ax4)
+    plt.xticks(rotation=45)
+    st.pyplot(fig4)
+    
+    # Pertanyaan 2: Total Peminjam Berdasarkan Cuaca
+    st.subheader("Total Peminjam Sepeda Berdasarkan Kondisi Cuaca")
+    fig5, ax5 = plt.subplots(figsize=(10,5))
+    sns.barplot(x="kondisi_cuaca", y="total_peminjam", data=day_df, estimator=sum, ax=ax5)
+    st.pyplot(fig5)
+    
+    # Analisis Korelasi
+    st.subheader("Correlation Matrix")
+    corr_matrix = day_df.corr(numeric_only=True)
+    fig6, ax6 = plt.subplots(figsize=(12,8))
+    sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', ax=ax6)
+    st.pyplot(fig6)
+    
+    # Kesimpulan Korelasi
+    st.subheader("Kesimpulan Korelasi Matriks")
+    st.markdown("""
+    - **Suhu (temp & atemp):** Korelasi positif kuat dengan peminjaman, menunjukkan semakin hangat cuaca, semakin tinggi peminjaman.
+    - **Tahun (yr):** Tren peningkatan peminjaman setiap tahun.
+    - **Kelembaban (hum):** Korelasi negatif, kelembaban tinggi mengurangi peminjaman.
+    """)
+    
+    # Kesimpulan Umum
+    st.subheader("Kesimpulan Umum")
+    st.markdown("""
+    - **Hari dengan Peminjaman Tertinggi:** Jumat.
+    - **Cuaca Optimal:** Cerah mendominasi peminjaman tertinggi.
+    """)
 
 # Tampilkan data mentah
 st.subheader("Data Mentah")
